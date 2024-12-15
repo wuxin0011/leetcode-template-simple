@@ -1,0 +1,14 @@
+
+# filter file
+*.iml
+*.html
+
+# filter folder
+out
+.idea
+**/request_config/
+
+# not filter folder
+!main
+
+# not filter file
