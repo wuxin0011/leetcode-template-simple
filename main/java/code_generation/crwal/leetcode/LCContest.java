@@ -243,12 +243,17 @@ public class LCContest implements Contest {
 
 
         String className = Problem.createDir(curId, true);
-        String prefix = Problem.createDir(curId, true, Problem.createDir(curId, false, dir));
-        String javaFile = prefix + ".java";
-        String txtFile = prefix + ".txt";
+
+//        如果使用旧版本dir方式
+//        String prefix = Problem.createDir(curId, true, Problem.createDir(curId, false, dir));
+//        String javaFile = prefix + ".java";
+//        String txtFile = prefix + ".txt";
+
+        String javaFile = dir + className + ".java";
+//        String txtFile = dir  + "\\__test_case__\\"+ className + ".txt";
+        String txtFile = dir  + className + ".txt";
 
         String packageInfo = ReflectUtils.getPackageInfo(javaFile);
-        // System.out.println("package info :" + packageInfo);
 
 
         classTemplate.buildIsNeedMod(StringUtils.isNeedMOD(info))
@@ -258,7 +263,9 @@ public class LCContest implements Contest {
                 .buildMethodName(methodName)
                 .buildPackageInfo(packageInfo)
                 // .buildClassName(className)
+                // 如果使用旧版本dir方式
                 .buildTextFileName(className)
+//                .buildTextFileName("__test_case__\\" + className)
                 .buildTitle(question.getTitle());
 
 
