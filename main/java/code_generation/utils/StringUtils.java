@@ -142,10 +142,10 @@ public class StringUtils {
 
 
     public static List<Integer> kmpSearchList(String text, String pattern) {
-        int id = 0;
+        int id = -1;
         List<Integer> ans = new ArrayList<>();
         while (true) {
-            id = kmpSearch(text, id == 0 ? id : id + pattern.length(), pattern);
+            id = kmpSearch(text, id == -1 ? 0 : id + pattern.length(), pattern);
             if (id == -1) {
                 break;
             }
@@ -180,7 +180,7 @@ public class StringUtils {
             return -1;
         }
         if (st < 0 || st >= text.length()) {
-            throw new RuntimeException("out");
+            return -1;
         }
         int[] next = new int[pattern.length()];
         for (int i = 1, cnt = 0; i < pattern.length(); i++) {

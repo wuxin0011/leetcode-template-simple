@@ -215,7 +215,18 @@ public class LCContest implements Contest {
         //使用新的接口 https://leetcode.cn/contest/weekly-contest-398/
         parseCodeInfo = this.parseCodeTemplate(question);
         if (parseCodeInfo != null) {
-            testCase = TestCaseUtil.testCaseToString(TEST_CASE.parseContest(StringUtils.jsonStrGetValueByKey(parseCodeInfo.getOrigin(), "translatedContent")));
+            List<String> parseResult = LCTestCase._2025NewHandlerInputAndOutput(parseCodeInfo.getOrigin());
+            if (!parseResult.isEmpty()) {
+                StringBuilder sb = new StringBuilder();
+
+                for(String s : parseResult) {
+                    sb.append(StringUtils.isEmpty(s) ? "" : s);
+                }
+
+                testCase = sb.toString();
+            } else {
+                testCase = TestCaseUtil.testCaseToString(TEST_CASE.parseContest(StringUtils.jsonStrGetValueByKey(parseCodeInfo.getOrigin(), "translatedContent")));
+            }
         } else {
             String contestHtml = BuildUrl.getContestQuestionPage(question.getUrl());
             testCase = TestCaseUtil.testCaseToString(TEST_CASE.parseContest(contestHtml));
