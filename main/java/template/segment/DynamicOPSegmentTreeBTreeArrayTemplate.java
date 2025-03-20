@@ -7,7 +7,10 @@ package template.segment;
 *    https://www.luogu.com.cn/record/197536628
 *
 *
+* 板子如何使用 ？ 参考连接
+* <a href="https://leetcode.cn/problems/booking-concert-tickets-in-groups/submissions/613366603/>使用板子 音乐会门票 维护最大值 区间和 ，使用线段树树二分</a>
 */
+
 
 /**
  * 动态开点线段树 数组版 维护更多信息
@@ -16,6 +19,9 @@ package template.segment;
  *  //
  */
 public class DynamicOPSegmentTreeBTreeArrayTemplate {
+
+
+    /***************************************线段树模板开始**************************************/
 
     // 自定义实现操作
     @FunctionalInterface
@@ -268,6 +274,7 @@ public class DynamicOPSegmentTreeBTreeArrayTemplate {
 
     }
 
+    /***************************************线段树模板结束**************************************/
 
     public static void main(String[] args) {
         int T = 10; // 测试次数
