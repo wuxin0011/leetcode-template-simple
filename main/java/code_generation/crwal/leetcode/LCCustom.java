@@ -145,6 +145,7 @@ public abstract class LCCustom implements CustomProblem {
         classTemplate.buildIsNeedMod(isNeedMod)
                 .buildTitle(titleSlug)
                 .buildUrl(url)
+                .buildUrl(LCContest.getUserName())
                 .buildMethod(method)
                 .buildCodeInfo(parseCodeInfo)
                 .buildMethodName(methodName);

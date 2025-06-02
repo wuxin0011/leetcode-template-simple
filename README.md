@@ -129,3 +129,7 @@
 
 [同功能python版本](https://github.com/wuxin0011/py-lc-run)
 
+> 如果你想使用同功能 maven 版本
+[同功能maven版本](https://github.com/wuxin0011/java-lc-run)
+[example](https://github.com/wuxin0011/java-lc-run-example)
+
