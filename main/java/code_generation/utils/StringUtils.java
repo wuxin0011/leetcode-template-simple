@@ -139,6 +139,13 @@ public class StringUtils {
         if (isEmpty(s)) {
             return "\"\"";
         }
+        // Explanation
+        if(StringUtils.kmpSearch(s,"Explanation")!=-1) {
+            s = s.substring(0,StringUtils.kmpSearch(s,"Explanation"));
+        }
+        if(StringUtils.kmpSearch(s,"explanation")!=-1) {
+            s = s.substring(0,StringUtils.kmpSearch(s,"explanation"));
+        }
         return s;
     }
 
