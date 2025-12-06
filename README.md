@@ -43,6 +43,8 @@
 ## 📦 LeetCode验证失败 ？
 
 
+[简单获取cookies工具 Cookie-Editor](https://cookie-editor.com/)
+
 [了解配置详情](./main/java/code_generation/crwal/readme.md)
 
 
@@ -110,12 +112,13 @@
 ## 📘 更新日志
 
 
-- 2025/1/20 更新周赛案例解析方式
-- 2024/6/10 添加`@TestCaseGroup` 注解 用于根据需要测试哪一组数据 [See](./main/java/code_generation/annotation/TestCaseGroup.java)
-- 2024/3/27 基本完成自动案例功能
-- 2024/3/19 破坏性调整目录结构，新增代码`template`自动生成
-- 2024/2/15 调整目录结构，为`ACM`模式做预留。另外 好像大部分题目都没有写，有点懒了，算了🤣。
-- 2023/6/18 不知道啥时候首次提交了
+- 2025/12/07 添加自动提交
+- 2025/01/20 更新周赛案例解析方式
+- 2024/06/10 添加`@TestCaseGroup` 注解 用于根据需要测试哪一组数据 [See](./main/java/code_generation/annotation/TestCaseGroup.java)
+- 2024/03/27 基本完成自动案例功能
+- 2024/03/19 破坏性调整目录结构，新增代码`template`自动生成
+- 2024/02/15 调整目录结构，为`ACM`模式做预留。另外 好像大部分题目都没有写，有点懒了，算了🤣。
+- 2023/06/18 不知道啥时候首次提交了
 
 
 

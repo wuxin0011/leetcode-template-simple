@@ -7,6 +7,7 @@ import code_generation.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -329,7 +330,7 @@ public class LCTestCase implements TestCase {
         }
     }
 
- public static List<String> parseOutput(String inputstring, String input_flag, String output_flag, String explain_flag, String tips_flag) {
+    public static List<String> parseOutput(String inputstring, String input_flag, String output_flag, String explain_flag, String tips_flag) {
         List<String> outputs = new ArrayList<>();
         List<Integer> startIds = StringUtils.kmpSearchList(inputstring, pre_start);
         List<Integer> endIds = StringUtils.kmpSearchList(inputstring, pre_end);
@@ -352,7 +353,7 @@ public class LCTestCase implements TestCase {
             outputs = new ArrayList<>();
         }
 
-        
+
         // 20250615
         // fix bug
         startIds = StringUtils.kmpSearchList(inputstring, output_flag);
@@ -376,7 +377,7 @@ public class LCTestCase implements TestCase {
             startIds.add(group[i][0]);
             endIds.add(group[i][1]);
         }
-        
+
         if (!startIds.isEmpty()) {
             int addcnt = 0;
 

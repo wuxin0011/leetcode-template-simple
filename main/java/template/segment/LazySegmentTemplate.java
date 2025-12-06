@@ -33,7 +33,7 @@ public class LazySegmentTemplate {
         int n;
         Info info[];
 
-        LazySegment(int n, Operation operation, long initVal) {
+        LazySegment(int n, long initVal, Operation operation) {
             this.initVal = initVal;
             this.n = n;
             this.info = new Info[n << 2];
@@ -49,12 +49,15 @@ public class LazySegmentTemplate {
         }
 
         public void build(int l, int r, int i) {
+            build(l,r,i,arr);
+        }
+        public void build(int l, int r, int i,int[] array) {
             if (l == r) {
-                info[i].val = arr[l];
+                info[i].val = array[l];
             } else {
                 int mid = l + ((r - l) >> 1);
-                build(l, mid, i << 1);
-                build(mid + 1, r, i << 1 | 1);
+                build(l, mid, i << 1,array);
+                build(mid + 1, r, i << 1 | 1,array);
                 up(i);
             }
             info[i].vis = false;
@@ -146,35 +149,35 @@ public class LazySegmentTemplate {
         }
 
         // 线段树二分 查询第一个
-        public int findFirst(int L, int x, int l, int r, int i) {
-            if (info[i].val < x)
+        public int findFirst(int L,int R, int x, int l, int r, int i) {
+            if (r < L || l > R || info[i].val < x)
                 return -1;
             if (l == r) {
                 return l;
             }
             int mid = l + ((r - l) >> 1);
             if (L <= mid) {
-                int p = findFirst(L, x, l, mid, i << 1);
+                int p = findFirst(L,R, x, l, mid, i << 1);
                 if (p >= 0)
                     return p;
             }
-            return findFirst(L, x, mid + 1, r, i << 1 | 1);
+            return findFirst(L, R,x, mid + 1, r, i << 1 | 1);
         }
 
         // 线段树二分 查询最后一个
-        public int findLast(int L, int x, int l, int r, int i) {
-            if (info[i].val < x)
+        public int findLast(int L,int R, int x, int l, int r, int i) {
+            if (r < L || l > R || info[i].val < x)
                 return -1;
             if (l == r) {
                 return l;
             }
             int mid = l + ((r - l) >> 1);
             if (L >= mid) {
-                int p = findLast(L, x, mid + 1, r, i << 1 | 1);
+                int p = findLast(L,R,x, mid + 1, r, i << 1 | 1);
                 if (p >= 0)
                     return p;
             }
-            return findLast(L, x, l, mid, i << 1);
+            return findLast(L, R,x, l, mid, i << 1);
         }
 
     }
@@ -191,7 +194,7 @@ public class LazySegmentTemplate {
             int n = 100;
             int[] nums = new int[n + 1];
 
-            LazySegment seg = new LazySegment(n, operation, initVal);
+            LazySegment seg = new LazySegment(n,  initVal,operation);
 
             for (int i = 1; i <= n; i++) {
                 boolean isNeg = Math.random() > 0.5;

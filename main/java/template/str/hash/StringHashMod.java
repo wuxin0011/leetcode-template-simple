@@ -17,8 +17,11 @@ public class StringHashMod {
      * @link <a href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/submissions/574426236/">测试结果</a>
      */
 
+
     static class StringHash {
-        long pow[], hash[], base = 499, mod = (long) 1e9 + 7;
+        private long[] pow, hash;
+        // 随机 base 防止被 hack ！
+        private static final long BASE = (long) (1e9 + 7) + new Random().nextInt((int) 1e8);
 
         StringHash(String s) {
             int n = s.length();
@@ -27,8 +30,8 @@ public class StringHashMod {
             pow[0] = 1L;
             hash[0] = s.charAt(0);
             for (int i = 1; i < n; i++) {
-                pow[i] = pow[i - 1] * base;
-                hash[i] = (hash[i - 1] * base + (s.charAt(i)));
+                pow[i] = pow[i - 1] * BASE;
+                hash[i] = (hash[i - 1] * BASE + (s.charAt(i)));
             }
         }
 
@@ -44,8 +47,9 @@ public class StringHashMod {
 
     // long 类型hash
     public static class StringHash2 {
-        private static final int BASE = 1_070_777_777;
-        private static final int MOD = (int) 8e8 + new Random().nextInt((int) 1e8);
+
+        private static final long BASE = (long) (1e9 + 7) + new Random().nextInt((int) 1e8);
+        private static final long MOD = (long)(1e9 + 7);
 
         static int MAXN = (int) (1e5 + 1), n;
         static long[] power = new long[MAXN + 2], pre = new long[MAXN + 2], suf = null;
@@ -70,17 +74,11 @@ public class StringHashMod {
             }
         }
 
+        // 默认不检查回文的
         private static void calcHash(char[] a) {
             calcHash(a, false);
         }
-
-
-        private static void heapCalcHash(long[] h, char[] chs) {
-            for (int i = 0; i < n; i++) {
-                h[i + 1] = (h[i] * BASE + chs[i]) % MOD;
-            }
-        }
-
+        // 是否构建检查回文的
         private static void calcHash(char[] a, boolean reverse) {
             chars = a;
             n = a.length;
@@ -94,13 +92,22 @@ public class StringHashMod {
             }
         }
 
+
+        private static void heapCalcHash(long[] h, char[] chs) {
+            for (int i = 0; i < n; i++) {
+                h[i + 1] = (h[i] * BASE + chs[i]) % MOD;
+            }
+        }
+
+
+
         private static long getHash(long[] hash, int l, int r) {
             return (hash[r + 1] - hash[l] * power[r - l + 1] % MOD + MOD) % MOD;
         }
 
 
         // 获取 [l,r] 的 hash
-        private static long getHash(int l, int r) {
+        public static long getHash(int l, int r) {
             return getHash(pre, l, r);
         }
 
@@ -120,8 +127,8 @@ public class StringHashMod {
      * @link <a title="测试链接" href="https://leetcode.cn/problems/palindromic-substrings/submissions/575085385/">提交测试</a>
      */
     static class StringHash3 {
-        private static final int BASE = 499;
-        private static final int MOD = (int) 8e8 + new Random().nextInt((int) 1e8);
+        private static final long BASE = (long)(1e9 + 7) + new Random().nextInt((int) 1e8);
+        private static final long MOD = (long)1e9 + 7;
 
         static int MAXN = (int) (1e5 + 1), n;
         static int[] power = new int[MAXN + 2], pre = new int[MAXN + 2], suf = null;
@@ -191,8 +198,8 @@ public class StringHashMod {
 
 
     public static void main(String[] args) {
-//        test02();
-         test03();
+        test02();
+//         test03();
     }
 
 

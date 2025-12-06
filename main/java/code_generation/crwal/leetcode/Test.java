@@ -296,7 +296,16 @@ public class Test {
 
 
         // testLoginInfo();
-        testContest452C();
+//        testContest452C();
+
+        // 测试构造函数
+        // testparse1();
+
+        // 测试提交结果
+        // testSubmitResult();
+
+        // 测试提交代码
+        testSubmitCode();
     }
 
     private static void getProblemsTitle() {
@@ -418,7 +427,7 @@ public class Test {
             }
         }
         System.out.println(lts.size());
-        for (var s : lts) {
+        for (String s : lts) {
             // System.out.println(StringUtils.jsonStrGetValueByKey(s,"langSlug"));
             String langSlug = StringUtils.jsonStrGetValueByKey(s,"langSlug");
             if(StringUtils.isEmpty(langSlug)) continue;
@@ -431,6 +440,58 @@ public class Test {
             }
         }
 
+    }
+
+
+    static void testparse1(){
+        StringBuilder sb = null;
+        String methodStr = IoUtil.readContent(Test.class, "./test_file/bi-w-167-c.txt");
+        int i = 0;
+        int deep = 0;
+        methodStr = methodStr.replace("}}","}");
+        System.out.println("origin :" + methodStr);
+        for(;i < methodStr.length() && methodStr.charAt(i) !='{';i++){
+
+        }
+        for (; i < methodStr.length(); i++) {
+            char c = methodStr.charAt(i);
+            if (c == '{') {
+                deep++;
+                if (deep == 1 && sb == null) {
+                    sb = new StringBuilder();
+                } else if (deep == 2 && sb != null) {
+                    sb.append(c);
+                }
+            } else if (c == '}') {
+                deep--;
+                if (deep == 0) {
+                    break;
+                }
+                if (sb != null) {
+                    sb.append(c);
+                }
+
+            } else {
+                if (sb != null) sb.append(c);
+            }
+        }
+        if(i<methodStr.length()){
+            System.out.println("\n\nend = >" + methodStr.substring(i));
+        }
+        System.out.println("cur = " + sb);
+    }
+
+
+    static void testSubmitResult(){
+        String submission_id = "683068868";
+        String submit_status = BuildUrl.querySubmitResult(submission_id);
+        System.out.println(submit_status);
+        if(StringUtils.kmpSearch(submit_status,"statusDisplay")!=-1 && StringUtils.kmpSearch(submit_status,"Accepted")!=-1){
+            System.out.println("AC!");
+        }
+    }
+
+    static void testSubmitCode(){
     }
 
 

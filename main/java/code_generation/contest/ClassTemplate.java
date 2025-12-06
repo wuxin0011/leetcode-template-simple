@@ -25,6 +25,7 @@ public class ClassTemplate {
     public String textFileName;
     public String packageInfo;
     public String importInfo;
+    public String questionId;
     public boolean isNeedMod = false;
 
 
@@ -38,6 +39,7 @@ public class ClassTemplate {
         this.textFileName = StringUtils.wrapperKey(IoUtil.DEFAULT_READ_FILE);
         this.title = "";
         this.url = "";
+        this.questionId = "";
         this.packageInfo = "";
         this.importInfo = "";
     }
@@ -118,6 +120,11 @@ public class ClassTemplate {
         return this;
     }
 
+    public ClassTemplate buildQuestionId(String questionId) {
+        this.questionId = questionId;
+        return this;
+    }
+
     public ClassTemplate buildImportInfo(String importInfo) {
         this.importInfo = importInfo;
         return this;
@@ -178,7 +185,7 @@ public class ClassTemplate {
                 className,
                 methodName,
                 info.textFileName,
-                info.isNeedMod ? MOD : "",
+                MOD,
                 method
         );
     }
