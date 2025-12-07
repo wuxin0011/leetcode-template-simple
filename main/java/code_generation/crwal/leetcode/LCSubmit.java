@@ -4,7 +4,6 @@ import code_generation.utils.CustomColor;
 import code_generation.utils.ExceptionUtils;
 import code_generation.utils.IoUtil;
 import code_generation.utils.StringUtils;
-import leetcode.contest.weekly.w_400.w_473.A;
 
 import java.util.List;
 import java.util.Random;
@@ -153,11 +152,6 @@ public class LCSubmit {
         return cur.toString();
     }
 
-
-    public static void main(String[] args) {
-        Class c = A.class;
-        System.out.println(filterSubmitCode(c, IoUtil.readContent(String.format("%s%s.java", IoUtil.buildAbsolutePath(c), c.getSimpleName()))));
-    }
 
 
 }
