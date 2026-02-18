@@ -1,0 +1,11 @@
+abcd
+2
+bacd
+
+xyz
+3
+zyx
+
+hey
+1
+hey

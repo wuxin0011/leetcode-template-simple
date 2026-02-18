@@ -305,7 +305,7 @@ public class Test {
         // testSubmitResult();
 
         // 测试提交代码
-        testSubmitCode();
+//        testSubmitCode();
     }
 
     private static void getProblemsTitle() {
@@ -491,8 +491,7 @@ public class Test {
         }
     }
 
-    static void testSubmitCode(){
-    }
+
 
 
 }
