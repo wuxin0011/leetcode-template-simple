@@ -250,7 +250,12 @@ public class ParseCodeDefaultTemplate implements ParseCodeTemplate {
                         returnType.append(c);
                     }
                 }
-                m = buildReturnType(returnType.toString());
+                if(s.length() > 0 && StringUtils.kmpSearch(s,"void") == -1 && StringUtils.isEmpty(returnType.toString().trim())) {
+                    m = buildReturnType("null");
+                }else {
+                    m = buildReturnType(returnType.toString());
+                }
+
             }
             s += m;
             result.append(s);
