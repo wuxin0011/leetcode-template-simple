@@ -176,6 +176,14 @@ public class ParseCodeDefaultTemplate implements ParseCodeTemplate {
         }
         methodStr = sb != null ? sb.toString() : null;
         methodStr = StringUtils.handerMethodString(methodStr);
+        if(info.isConstructor()) {
+
+        } else {
+            int p = StringUtils.kmpSearch(methodStr,"public");
+            if(p != -1) {
+                methodStr = "\n    " + methodStr.substring(p);
+            }
+        }
         methodStr = handlerReturnType(methodStr);
         // 移出方法注释内容
         methodStr = removeComment(methodStr);
@@ -254,7 +262,12 @@ public class ParseCodeDefaultTemplate implements ParseCodeTemplate {
 
     private String build(String s) {
         boolean is = this.info.isConstructor();
-        final String p = "\n\n" + (is ? "\t  " : " ") + "       %s \n" + (is ? "\t  " : "\t") + "}";
+        String p = "";
+        if(is) {
+            p  = "\n\n" + "\t\t" + "    %s \n" + "\t\t" + "}";
+        }else{
+            p  = "\n\n" + " " + "       %s \n" + "\t" + "}";
+        }
         return String.format(p, s);
     }
 
